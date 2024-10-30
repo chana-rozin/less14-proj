@@ -1,0 +1,33 @@
+.container {
+    width: 90%;
+    height: 4rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(200, 200, 200);
+    border-radius: 50px;
+}
+
+.circle{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+
+.orange{
+    background-color: orange;
+}
+
+.green{
+    background-color: rgb(102, 236, 87);
+}
+
+.blue{
+    background-color: rgb(0, 170, 255);
+}
+
+.purple{
+    background-color: rgb(173, 127, 255);
+}

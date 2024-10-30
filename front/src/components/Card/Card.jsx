@@ -11,12 +11,17 @@ function Card({ data }) {
     setCard(data);
   }, [data]);
 
-  const saveChanges = () => {
-    api.updateCard(card.id, card);
+
+  const saveChanges = (updatedCard) => {
+    console.log('save changes', updatedCard);
+    api.updateCard(card.id, updatedCard);
   };
 
-  const handleChangeColor = (color) => {
-    setCard({ ...card, color });
+  const handleColorChange = (color) => {
+    console.log('handleColorChange', color);
+    const updatedCard = { ...card, color };
+    setCard(updatedCard);
+    saveChanges(updatedCard);
   };
 
   const handleInputChange = (event) => {
@@ -27,8 +32,9 @@ function Card({ data }) {
     setIsInEditing(true);
   };
 
-  const handleBlur = () => {
-    saveChanges();
+  const handleBlur = (event) => {
+    event.preventDefault();
+    saveChanges({ ...card, body: event.target.value });
     setIsInEditing(false);
   };
 
@@ -51,8 +57,7 @@ function Card({ data }) {
           {card.body || 'Click to edit'}
         </span>
       )}
-      
-      <ColorPicker color={card.color} handleChangeColor={handleChangeColor} />
+      <ColorPicker color={card.color} handleColorChange={handleColorChange} />
     </div>
   );
 }
