@@ -9,9 +9,53 @@
     padding: 2rem 0.5rem;
     align-items: center;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
 
 
+  
+.cardText{
+    width: 80%;
+    height: auto;
+    max-height: 70%;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+textarea {
+    border: none; 
+    outline: none; 
+    background: transparent; 
+    font-size: inherit;
+    color: inherit; 
+    padding: 0; 
+    margin: 0; 
+    line-height: normal;
+    height: 70% !important;
+    resize: none;
+  }
+
+
+.controller{
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 80%;
+    align-items: center;
+
+}
+
+.icon{
+    cursor: pointer;
+    font-size: xx-large;
+    color: rgb(70, 70, 70);
+}
 
 .orange{
     background-color: orange;
@@ -27,4 +71,8 @@
 
 .purple{
     background-color: rgb(173, 127, 255);
+}
+
+.lightGray{
+    background-color: rgb(240, 240, 240);
 }

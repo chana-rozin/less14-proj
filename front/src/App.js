@@ -21,14 +21,21 @@ function App() {
 
 
   const newCard = async () => {
-    const res = await api.createCard({ body: "new card" });
+    const res = await api.createCard({ body: "new card", color: "lightGray" });
     console.log(res.data);
     setCards([...cards, res.data]);
   }
 
+  const handleDelCard = async (id) => {
+    console.log('delete card', id);
+    const res = await api.deleteCard(id);
+    console.log(res.data);
+    setCards(cards.filter(card => card.id!== id));
+  }
+
   return (
     <div className="container">
-      {cards && cards.map(card => <Card key={card.id} data={card} />)}
+      {cards && cards.map(card => <Card key={card.id} data={card} handleDelCard={handleDelCard}/>)}
       <div className='newCardBtn'>
       <FaPlus onClick={() => newCard()} />
       </div>

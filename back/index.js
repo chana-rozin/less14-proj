@@ -20,6 +20,7 @@ app.post('/cards', (req, res) => {
     console.log('post card',req.body);
     const newCard = {id:`${DB.runnerId++}`,...req.body}
     DB.cards.push(newCard);
+    console.log(newCard);
     res.send(newCard);
 });
 
