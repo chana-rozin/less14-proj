@@ -6,6 +6,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { MdEdit } from "react-icons/md";
 
 function Card({ data, handleDelCard }) {
+
   const [isInEditing, setIsInEditing] = useState(false);
   const [card, setCard] = useState(data || {});
 
@@ -15,12 +16,10 @@ function Card({ data, handleDelCard }) {
 
 
   const saveChanges = (updatedCard) => {
-    console.log('save changes', updatedCard);
     api.updateCard(card.id, updatedCard);
   };
 
   const handleColorChange = (color) => {
-    console.log('handleColorChange', color);
     const updatedCard = { ...card, color };
     setCard(updatedCard);
     saveChanges(updatedCard);
@@ -52,18 +51,18 @@ function Card({ data, handleDelCard }) {
           value={card.body || ''}
           onChange={handleInputChange}
           className={style.cardText} />
-        </>
+      </>
         : (
           <span
             onClick={enableEditing}
-            title="Click to edit" // Displays "Click to edit" on hover
+            title="Click to edit"
             className={style.cardText}
           >
             {card.body || 'Click to edit'}
           </span>
         )}
       <div className={style.controller}>
-        <AiFillDelete className={style.icon} onClick={()=>handleDelCard(card.id)} />
+        <AiFillDelete className={style.icon} onClick={() => handleDelCard(card.id)} />
         <MdEdit className={style.icon} onClick={enableEditing} />
         <ColorPicker color={card.color} handleColorChange={handleColorChange} />
       </div>

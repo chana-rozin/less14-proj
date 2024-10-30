@@ -1,27 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react';
 import style from './ColorPicker.module.css';
+import colors from '../../utils/optionalColors';
 
 function ColorPicker({ color, handleColorChange }) {
+
   const [controllerDisplay, setControllerDisplay] = useState(false);
-  const containerRef = useRef(null); // Create a ref
+  const containerRef = useRef(null);
+
 
   const toggleControllerDisplay = () => {
     setControllerDisplay((prev) => !prev);
   };
 
-  // Handle clicks outside the color picker
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Check if the click was outside the container
       if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setControllerDisplay(false); // Close the controller
+        setControllerDisplay(false);
       }
     };
 
-    // Add event listener for clicks
     document.addEventListener('mousedown', handleClickOutside);
 
-    // Clean up the event listener on component unmount
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -34,12 +34,15 @@ function ColorPicker({ color, handleColorChange }) {
       ) : (
         <div
           className={style.container}
-          ref={containerRef} // Attach the ref to the container
+          ref={containerRef}
         >
-          <div className={`${style.blue} ${style.circle}`} onClick={() => handleColorChange('blue')}></div>
-          <div className={`${style.green} ${style.circle}`} onClick={() => handleColorChange('green')}></div>
-          <div className={`${style.purple} ${style.circle}`} onClick={() => handleColorChange('purple')}></div>
-          <div className={`${style.orange} ${style.circle}`} onClick={() => handleColorChange('orange')}></div>
+          {colors.map(color =>
+            <div
+              key={color}
+              className={`${style[color]} ${style.circle}`}
+              onClick={() => handleColorChange(color)}
+            ></div>
+          )}
         </div>
       )
       }
