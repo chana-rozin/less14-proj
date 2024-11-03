@@ -1,15 +1,19 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Link } from 'react';
 import api from './service/cards';
 import Card from './components/Card/Card';
 import { FaPlus } from "react-icons/fa";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import { FaSearch } from "react-icons/fa";
+// import Search from './components/Search/Search';
+// import {searchCardByBodyText} from './utils/searchLogic.js'
 
 
 function App() {
 
   const [cards, setCards] = useState([]);
+  const [search, setSearch] = useState(false);
 
   useEffect(() => {
     const fetchCard = async () => {
@@ -37,10 +41,14 @@ function App() {
     <>
       <ToastContainer />
       <div className="container">
-        <div className='newCardBtn'>
-        <FaPlus onClick={() => newCard()} />
+        <div className='controller'>
+          <FaPlus onClick={() => newCard()} />
+          {/* <FaSearch onClick={()=>setSearch(!search)}/> */}
+          {/* {search && <Search setData={setCards} searchMethod={searchCardByBodyText}/>} */}
         </div>
-        {cards && cards.map(card => <Card key={card.id} data={card} handleDelCard={handleDelCard} />)}
+        <div className='cards-container'>
+          {cards && cards.map(card => <Card key={card.id} data={card} handleDelCard={handleDelCard} />)}
+        </div>
       </div>
     </>
   );
